@@ -16,6 +16,7 @@
             --amber-border: #d97706;
             --green-bg: #f0fdf4;
             --green-border: #16a34a;
+            --green-dark: #166534;
             --charcoal: #1a1a1a;
             --gray: #444;
             --gray-light: #666;
@@ -572,6 +573,111 @@
             border-radius: 3px;
         }
 
+        /* ── Test Day: Start Here ── */
+        .testday {
+            background: var(--white);
+            border: 3px solid var(--blue);
+            border-radius: 10px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            margin-bottom: 2.5rem;
+            overflow: hidden;
+        }
+
+        .testday-header {
+            background: var(--blue);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+        }
+
+        .testday-header h2 {
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .testday-sub {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin-top: 0.15rem;
+        }
+
+        .testday-body {
+            padding: 1.5rem 2rem 1.75rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .testday-path {
+            display: flex;
+            flex-direction: column;
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+
+        .testday-path-admin {
+            background: var(--blue-light);
+            border: 2px solid var(--blue);
+        }
+
+        .testday-path-proctor {
+            background: var(--green-bg);
+            border: 2px solid var(--green-border);
+        }
+
+        .testday-path h3 {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .testday-path-admin h3 { color: var(--blue-dark); }
+        .testday-path-proctor h3 { color: var(--green-dark); }
+
+        .testday-path p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .testday-path p strong { color: var(--charcoal); }
+
+        .testday-path .callout { margin: 0 0 1rem; }
+
+        .testday-link {
+            display: block;
+            margin-top: auto;
+            padding: 1rem 1.15rem;
+            border-radius: 8px;
+            color: var(--white);
+            font-size: 1.05rem;
+            font-weight: 700;
+            line-height: 1.45;
+            text-align: center;
+            text-decoration: underline;
+            overflow-wrap: anywhere;
+            transition: background 0.2s;
+        }
+
+        .testday-link-admin { background: var(--blue-dark); }
+        .testday-link-admin:hover, .testday-link-admin:focus { background: var(--blue); }
+        .testday-link-proctor { background: var(--green-dark); }
+        .testday-link-proctor:hover, .testday-link-proctor:focus { background: #15803d; }
+
+        .testday-link:focus-visible {
+            outline: 3px solid var(--charcoal);
+            outline-offset: 2px;
+        }
+
+        .testday-note {
+            font-size: 0.85rem;
+            color: var(--gray-light);
+            margin-top: 0.6rem;
+            text-align: center;
+        }
+
         /* ── Print Styles ── */
         @media print {
             body { background: white; font-size: 11pt; }
@@ -584,11 +690,31 @@
             .container { padding: 1rem 0; }
             .search-container { display: none; }
             .header a[download] { display: none; }
-            .section, .rescue-section, .known-issues, .toc {
+            .section, .rescue-section, .known-issues, .toc, .testday {
                 box-shadow: none;
                 break-inside: avoid;
                 margin-bottom: 1rem;
             }
+            .testday-header {
+                background: var(--blue-dark) !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .testday-body { display: block; padding: 1rem; }
+            .testday-path {
+                border: 1px solid #999;
+                background: none;
+                margin-bottom: 0.75rem;
+                break-inside: avoid;
+            }
+            .testday-link {
+                background: none !important;
+                color: #000 !important;
+                padding: 0.25rem 0;
+                text-align: left;
+                font-size: 1rem;
+            }
+            .testday-note { text-align: left; }
             .section-header, .rescue-header, .known-issues-header,
             .seal-table th {
                 -webkit-print-color-adjust: exact;
@@ -607,6 +733,9 @@
             .status-grid { grid-template-columns: 1fr; }
             .container { padding: 1rem; }
             .section-body, .rescue-body { padding: 1.25rem; }
+            .testday-header h2 { font-size: 1.3rem; }
+            .testday-body { grid-template-columns: 1fr; gap: 1rem; padding: 1.25rem; }
+            .testday-link { font-size: 1rem; }
             .screenshot-row { flex-direction: column; align-items: center; }
             .search-input { font-size: 16px; }
             .search-container { padding: 0.75rem 1rem 0.85rem; }
@@ -695,10 +824,39 @@
         </div>
     </div>
 
+    <!-- ════════════════════ TEST DAY — START HERE ════════════════════ -->
+    <div class="testday" id="test-day">
+        <div class="testday-header">
+            <h2>&#128205; Test Day &mdash; Start Here</h2>
+            <div class="testday-sub">Find your role below, then click the link to go straight there.</div>
+        </div>
+        <div class="testday-body">
+
+            <div class="testday-path testday-path-admin">
+                <h3>School Administrators</h3>
+                <p>Are you a School Administrator? Go to our Pearson Launchpad page:</p>
+                <a class="testday-link testday-link-admin" href="https://launchpad.pearson.com/#/clients/810b5ce4-1e87-11ef-9409-87e8aaeedec0" target="_blank" rel="noopener">https://launchpad.pearson.com/#/clients/810b5ce4-1e87-11ef-9409-87e8aaeedec0</a>
+                <div class="testday-note">Opens Pearson Launchpad in a new tab.</div>
+            </div>
+
+            <div class="testday-path testday-path-proctor">
+                <h3>Proctors</h3>
+                <p>Are you a proctor? Make sure you have your <strong>Test Code</strong> and <strong>Proctor Password</strong>, and go to the Proctor page</p>
+                <div class="callout callout-warning">
+                    <strong>Get your proctor card in hand first.</strong> You cannot start a session without your <strong>Test Code</strong> and <strong>Proctor Password</strong>. Both are printed on your proctor card &mdash; see <a href="#what-you-need" style="color:var(--red-border);">What You'll Need</a>.
+                </div>
+                <a class="testday-link testday-link-proctor" href="https://il.adamexam.com/#/proctor" target="_blank" rel="noopener">il.adamexam.com/#/proctor</a>
+                <div class="testday-note">Opens the proctor sign-in page in a new tab.</div>
+            </div>
+
+        </div>
+    </div>
+
     <!-- ════════════════════ TABLE OF CONTENTS ════════════════════ -->
     <div class="toc">
         <h3>Quick Navigation</h3>
         <ul class="toc-list">
+            <li><span class="toc-number" style="color:var(--blue-dark);">&#9733;</span><a href="#test-day" style="color:var(--blue-dark); font-weight:700;">Test Day &mdash; Start Here</a></li>
             <li><span class="toc-number">1.</span><a href="#what-you-need">What You'll Need</a></li>
             <li><span class="toc-number">2.</span><a href="#before-test-day">Before Test Day</a></li>
             <li><span class="toc-number">3.</span><a href="#proctor-setup">Proctor Setup</a></li>
@@ -1221,6 +1379,11 @@
             'crash': ['exited', 'reseat', 'frozen', 'hard shutdown', 'power button'],
             'seal': ['seal code'],
             'start': ['launch', 'testnav', 'test code', 'login'],
+            'link': ['launchpad', 'proctor page', 'adamexam', 'start here'],
+            'website': ['launchpad', 'proctor page', 'adamexam', 'start here'],
+            'launchpad': ['launchpad', 'pearson', 'administrator', 'start here'],
+            'proctor page': ['adamexam', 'proctor page', 'start here'],
+            'administrator': ['launchpad', 'pearson', 'administrator'],
         };
 
         searchInput.addEventListener('input', function() {
